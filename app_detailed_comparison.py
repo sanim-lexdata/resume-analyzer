@@ -143,79 +143,149 @@ class ResumeAnalyzer:
         """Extract person's name from resume (usually at the top)."""
         lines = text.strip().split('\n')
         
-        # Check first 5 lines for name
-        for line in lines[:5]:
+        # Common job titles and words to avoid
+        avoid_words = ['developer', 'engineer', 'manager', 'analyst', 'designer', 'architect',
+                      'consultant', 'specialist', 'coordinator', 'administrator', 'director',
+                      'resume', 'cv', 'curriculum', 'vitae', 'contact', 'email', 'phone',
+                      'address', 'profile', 'summary', 'objective', 'python', 'java', 'senior',
+                      'junior', 'lead', 'head', 'chief', 'software', 'data', 'web', 'mobile',
+                      'full stack', 'frontend', 'backend', 'devops', 'ml', 'ai']
+        
+        # Check first 10 lines for name
+        for line in lines[:10]:
             line = line.strip()
-            # Name is usually 2-4 words, all capitalized, no numbers
+            
+            # Skip empty lines
+            if not line:
+                continue
+            
+            # Skip if line is too long (likely not a name)
+            if len(line) > 50:
+                continue
+            
+            # Skip if contains @ or numbers (email/phone)
+            if '@' in line or re.search(r'\d{3,}', line):
+                continue
+            
             words = line.split()
+            
+            # Name should be 2-4 words
             if 2 <= len(words) <= 4:
-                # Check if all words start with capital and no numbers
-                if all(w[0].isupper() and not any(c.isdigit() for c in w) for w in words if len(w) > 1):
-                    # Avoid common headers
-                    if not any(header in line.lower() for header in ['resume', 'curriculum', 'cv', 'contact', 'email', 'phone', 'address']):
+                # Check if any word is a job title or avoided word
+                line_lower = line.lower()
+                if any(avoid_word in line_lower for avoid_word in avoid_words):
+                    continue
+                
+                # Check if all words start with capital letter
+                if all(w[0].isupper() for w in words if len(w) > 1 and w.isalpha()):
+                    # Additional check: words should be alphabetic
+                    if all(w.isalpha() for w in words):
                         return line
         
-        # Fallback: look for name pattern anywhere in first 500 chars
-        first_section = text[:500]
-        name_pattern = r'\b([A-Z][a-z]+ [A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\b'
-        matches = re.findall(name_pattern, first_section)
-        if matches:
-            return matches[0]
+        # Fallback: look for pattern like "Name: John Doe" or similar
+        name_patterns = [
+            r'(?:Name|Candidate|Applicant)\s*:\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
+            r'\b([A-Z][a-z]+\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b'
+        ]
+        
+        first_section = text[:800]
+        for pattern in name_patterns:
+            matches = re.findall(pattern, first_section)
+            if matches:
+                candidate_name = matches[0]
+                # Verify it's not a job title
+                if not any(avoid in candidate_name.lower() for avoid in avoid_words):
+                    return candidate_name
         
         return "Unknown Candidate"
     
     def extract_skills(self, text):
-        """Extract skills from text"""
+        """Extract actual technical skills from text"""
         text_lower = text.lower()
         
-        # Common skill patterns
+        # Technical skills only - no generic words
         skills = set()
         
         # Programming languages
         prog_langs = ['python', 'java', 'javascript', 'c++', 'c#', 'ruby', 'php', 'swift', 
-                      'kotlin', 'go', 'rust', 'typescript', 'r', 'matlab', 'scala']
+                      'kotlin', 'go', 'rust', 'typescript', 'r', 'matlab', 'scala', 'perl',
+                      'c', 'objective-c', 'dart', 'elixir', 'haskell', 'lua', 'bash', 'shell']
         
-        # Frameworks and libraries
-        frameworks = ['react', 'angular', 'vue', 'django', 'flask', 'spring', 'node.js', 
-                     'express', 'fastapi', 'laravel', 'rails', '.net', 'tensorflow', 
-                     'pytorch', 'keras', 'pandas', 'numpy']
+        # Data Science & ML
+        data_ml = ['pandas', 'numpy', 'scipy', 'scikit-learn', 'tensorflow', 'pytorch', 
+                   'keras', 'opencv', 'nltk', 'spacy', 'matplotlib', 'seaborn', 'plotly',
+                   'machine learning', 'deep learning', 'data mining', 'data visualization',
+                   'statistical analysis', 'data analysis', 'predictive modeling', 'nlp',
+                   'computer vision', 'neural networks', 'random forest', 'xgboost']
         
-        # Tools and technologies
-        tools = ['git', 'docker', 'kubernetes', 'jenkins', 'aws', 'azure', 'gcp', 'sql', 
-                'nosql', 'mongodb', 'postgresql', 'mysql', 'redis', 'elasticsearch', 
-                'tableau', 'power bi', 'excel', 'jira', 'confluence']
+        # Web Frameworks
+        web_frameworks = ['react', 'angular', 'vue', 'vue.js', 'django', 'flask', 'spring', 
+                         'node.js', 'express', 'express.js', 'fastapi', 'laravel', 'rails',
+                         'asp.net', '.net', 'next.js', 'nuxt.js', 'svelte', 'ember.js',
+                         'redux', 'jquery', 'bootstrap', 'tailwind']
         
-        # Soft skills
-        soft_skills = ['leadership', 'communication', 'teamwork', 'problem solving', 
-                      'critical thinking', 'project management', 'agile', 'scrum', 
-                      'collaboration', 'analytical', 'creativity']
+        # Databases
+        databases = ['sql', 'mysql', 'postgresql', 'mongodb', 'redis', 'elasticsearch',
+                    'cassandra', 'oracle', 'sqlite', 'mariadb', 'dynamodb', 'neo4j',
+                    'firebase', 'couchdb', 'influxdb', 'nosql']
         
-        # Check for all skill types
-        all_skills = prog_langs + frameworks + tools + soft_skills
+        # Cloud & DevOps
+        cloud_devops = ['aws', 'azure', 'gcp', 'google cloud', 'docker', 'kubernetes', 
+                       'jenkins', 'git', 'github', 'gitlab', 'bitbucket', 'ci/cd',
+                       'terraform', 'ansible', 'puppet', 'chef', 'circleci', 'travis ci',
+                       'cloudformation', 'helm', 'prometheus', 'grafana', 'nagios']
         
+        # Business Intelligence & Analytics
+        bi_tools = ['tableau', 'power bi', 'looker', 'qlik', 'sap', 'cognos', 
+                   'microstrategy', 'metabase', 'redash', 'superset']
+        
+        # Other Technical Tools
+        tech_tools = ['excel', 'jira', 'confluence', 'slack', 'trello', 'asana',
+                     'postman', 'swagger', 'graphql', 'rest api', 'api', 'microservices',
+                     'websockets', 'kafka', 'rabbitmq', 'nginx', 'apache', 'linux', 'unix',
+                     'windows server', 'visual studio', 'vs code', 'jupyter', 'pycharm']
+        
+        # Methodologies (only technical ones)
+        methodologies = ['agile', 'scrum', 'kanban', 'devops', 'tdd', 'bdd', 'ci/cd',
+                        'test-driven development', 'continuous integration']
+        
+        # Combine all technical skills
+        all_skills = (prog_langs + data_ml + web_frameworks + databases + 
+                     cloud_devops + bi_tools + tech_tools + methodologies)
+        
+        # Check for skills in text
         for skill in all_skills:
             if skill.lower() in text_lower:
-                skills.add(skill.title())
+                # Capitalize properly
+                if skill in ['r', 'c']:
+                    # Special case for single letters
+                    if re.search(r'\b' + skill + r'\b', text_lower):
+                        skills.add(skill.upper())
+                else:
+                    skills.add(skill.title())
         
-        # Extract years of experience
-        exp_pattern = r'(\d+)\+?\s*(?:years?|yrs?)(?:\s+of)?\s+(?:experience|exp)'
-        exp_matches = re.findall(exp_pattern, text_lower)
-        if exp_matches:
-            skills.add(f"{exp_matches[0]}+ Years Experience")
+        # Special handling for multi-word skills
+        multi_word_skills = {
+            'power bi': 'Power BI',
+            'google cloud': 'Google Cloud',
+            'machine learning': 'Machine Learning',
+            'deep learning': 'Deep Learning',
+            'data science': 'Data Science',
+            'visual studio': 'Visual Studio',
+            'vs code': 'VS Code',
+            'node.js': 'Node.js',
+            'vue.js': 'Vue.js',
+            'next.js': 'Next.js',
+            'express.js': 'Express.js',
+            'asp.net': 'ASP.NET',
+            '.net': '.NET',
+            'scikit-learn': 'Scikit-learn'
+        }
         
-        # Extract education keywords
-        education_keywords = ['bachelor', 'master', 'phd', 'mba', 'degree', 'university', 
-                             'college', 'engineering', 'computer science', 'bsc', 'msc']
-        for edu in education_keywords:
-            if edu in text_lower:
-                skills.add(edu.title())
-        
-        # Extract certification keywords
-        cert_keywords = ['certified', 'certification', 'aws certified', 'pmp', 'cissp', 
-                        'comptia', 'microsoft certified', 'google certified']
-        for cert in cert_keywords:
-            if cert in text_lower:
-                skills.add(cert.title())
+        for key, proper_name in multi_word_skills.items():
+            if key in text_lower:
+                skills.discard(key.title())  # Remove incorrect capitalization
+                skills.add(proper_name)
         
         return list(skills)
     
@@ -391,18 +461,43 @@ def main():
     with st.sidebar:
         st.header("📋 Job Description")
         
-        jd_input = st.text_area(
-            "Paste the job description here",
-            value=st.session_state.jd_text,
-            height=300,
-            placeholder="Paste the complete job description including requirements, skills, and qualifications..."
+        # Option to upload or paste
+        jd_input_method = st.radio(
+            "Choose input method:",
+            ["📝 Paste Text", "📤 Upload File"],
+            horizontal=True
         )
         
+        jd_text_content = ""
+        
+        if jd_input_method == "📝 Paste Text":
+            jd_text_content = st.text_area(
+                "Paste the job description here",
+                value=st.session_state.jd_text,
+                height=300,
+                placeholder="Paste the complete job description including requirements, skills, and qualifications..."
+            )
+        else:
+            uploaded_jd = st.file_uploader(
+                "Upload Job Description",
+                type=['pdf', 'docx', 'txt'],
+                help="Upload job description file"
+            )
+            
+            if uploaded_jd:
+                with st.spinner("Extracting text from file..."):
+                    jd_text_content = TextExtractor.extract(uploaded_jd)
+                    st.success(f"✅ Extracted from {uploaded_jd.name}")
+                    
+                    # Show preview
+                    with st.expander("📄 Preview"):
+                        st.text_area("Content", jd_text_content[:500] + "...", height=150, disabled=True)
+        
         if st.button("🔍 Analyze Job Description", type="primary"):
-            if jd_input.strip():
-                st.session_state.jd_text = jd_input
+            if jd_text_content.strip():
+                st.session_state.jd_text = jd_text_content
                 with st.spinner("Analyzing job description..."):
-                    jd_analysis = analyzer.analyze_job_description(jd_input)
+                    jd_analysis = analyzer.analyze_job_description(jd_text_content)
                     st.session_state.jd_analyzed = True
                     st.success("Job description analyzed!")
                     
@@ -416,7 +511,7 @@ def main():
                     with st.expander("View Keywords"):
                         st.write(", ".join(jd_analysis['keywords'][:20]))
             else:
-                st.error("Please enter a job description")
+                st.error("Please enter or upload a job description")
         
         if st.session_state.jd_analyzed:
             st.success("✅ Job Description Ready")
