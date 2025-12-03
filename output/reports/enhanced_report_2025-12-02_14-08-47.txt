@@ -1,0 +1,31 @@
+======================================================================
+ENHANCED RESUME ANALYSIS REPORT
+======================================================================
+
+Final Score: 64.3/100
+Rating: Fair Match
+
+Score Breakdown:
+  • Skill Match: 72.0/100
+  • Semantic Similarity: 48.4/100
+  • Experience: 70.0/100
+  • Qualifications: 70.0/100
+
+Skills Analysis:
+  Matched (Exact): 2
+  Matched (Fuzzy): 0
+  Matched (Semantic): 2
+  Missing: 3
+  Extra: 2
+
+Experience Analysis:
+  No specific experience requirement mentioned
+  Recommendation: Highlight relevant skills and projects
+
+Recommendations:
+  1. Consider acquiring key missing skills through courses or projects
+  2. Priority skills to acquire: etl_tools, machine_learning, cloud
+  3. Highlight your relevant skills and projects more prominently in your resume
+  4. Strengthen your profile by gaining hands-on experience with missing skills
+
+======================================================================

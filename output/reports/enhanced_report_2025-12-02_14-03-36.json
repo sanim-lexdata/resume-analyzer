@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-02T14:03:36.878540",
+    "job_title": "Python Backend Developer",
+    "analyzer_version": "2.0.0"
+  },
+  "contact_info": {
+    "email": "michael.johnson@example.com",
+    "phone": "555-234-5678",
+    "linkedin": null,
+    "github": null
+  },
+  "overall_score": {
+    "final_score": 69.9,
+    "rating": "Fair Match",
+    "breakdown": {
+      "skill_score": 72.0,
+      "semantic_score": 66.9,
+      "experience_score": 70.0,
+      "qualification_score": 70.0
+    }
+  },
+  "skills_analysis": {
+    "matched_exact": [
+      "cloud",
+      "programming_languages"
+    ],
+    "matched_fuzzy": [],
+    "matched_semantic": [
+      "programming_languages",
+      "cloud"
+    ],
+    "missing": [
+      "data_analysis",
+      "etl_tools",
+      "machine_learning"
+    ],
+    "extra": [
+      "extracted_entities",
+      "database"
+    ],
+    "total_matched": 4,
+    "total_required": 7,
+    "match_rate": 57.1
+  },
+  "semantic_analysis": {
+    "overall_similarity": 0.669,
+    "interpretation": "Moderate semantic alignment with job requirements"
+  },
+  "experience_analysis": {
+    "candidate_experience": 0,
+    "required_experience": 0,
+    "gap": 0,
+    "gap_percentage": 0.0,
+    "status": "no_requirement",
+    "message": "No specific experience requirement mentioned",
+    "recommendation": "Highlight relevant skills and projects"
+  },
+  "strengths": [
+    "Additional relevant skills: extracted_entities, database",
+    "Proficient in key required skills: cloud, programming_languages"
+  ],
+  "recommendations": [
+    "Consider acquiring key missing skills through courses or projects",
+    "Priority skills to acquire: data_analysis, etl_tools, machine_learning",
+    "Highlight your relevant skills and projects more prominently in your resume",
+    "Strengthen your profile by gaining hands-on experience with missing skills"
+  ],
+  "summary": "Overall Assessment: Fair Match (69.9/100) | Skills: 2 matched (2 exact, 0 similar), 3 missing | Experience: No specific experience requirement mentioned | Recommendation: Fair match. Consider skill development before applying."
+}

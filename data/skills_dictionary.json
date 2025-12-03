@@ -1,0 +1,9 @@
+{
+  "programming_languages": ["python", "java", "c++", "r", "sql"],
+  "data_analysis": ["pandas", "numpy", "excel", "tableau", "power bi", "matplotlib", "seaborn"],
+  "machine_learning": ["scikit-learn", "tensorflow", "pytorch", "xgboost", "random forest", "logistic regression"],
+  "cloud": ["aws", "azure", "gcp"],
+  "database": ["mysql", "postgresql", "mongodb", "sqlite"],
+  "etl_tools": ["airflow", "talend", "informatica"],
+  "soft_skills": ["communication", "problem solving", "teamwork"]
+}

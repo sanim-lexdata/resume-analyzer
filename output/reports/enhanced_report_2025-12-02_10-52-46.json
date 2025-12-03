@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-02 10:52:46",
+    "resume_file": "resume.txt",
+    "job_title": "Data analyst"
+  },
+  "overall_score": {
+    "final_score": 82.19,
+    "breakdown": {
+      "skill_match": {
+        "score": 100.0,
+        "weighted": 40.0,
+        "weight": 0.4
+      },
+      "semantic_similarity": {
+        "score": 70.62,
+        "weighted": 21.19,
+        "weight": 0.3
+      },
+      "experience_relevance": {
+        "score": 70.0,
+        "weighted": 14.0,
+        "weight": 0.2
+      },
+      "additional_qualifications": {
+        "score": 70.0,
+        "weighted": 7.0,
+        "weight": 0.1
+      }
+    },
+    "rating": "Strong Match"
+  },
+  "skill_analysis": {
+    "total_required": 8,
+    "total_matched": 7,
+    "match_percentage": 87.5,
+    "matched_exact": [
+      "pandas",
+      "tableau",
+      "machine learning",
+      "numpy",
+      "power bi",
+      "python",
+      "sql"
+    ],
+    "matched_fuzzy": [],
+    "missing_skills": [
+      "scikit-learn"
+    ],
+    "extra_skills": [
+      "science",
+      "excel"
+    ]
+  },
+  "experience_analysis": {
+    "candidate_experience": 0,
+    "required_experience": 0,
+    "gap": 0,
+    "gap_percentage": 0.0,
+    "status": "no_requirement",
+    "message": "No specific experience requirement mentioned",
+    "recommendation": "Highlight relevant skills and projects"
+  },
+  "strengths": [
+    "Excellent skill match (87.5%) with job requirements",
+    "High semantic alignment with job description"
+  ],
+  "improvements": [
+    "Develop skills in: scikit-learn"
+  ],
+  "recommendations": {
+    "immediate_actions": [
+      "Candidate is well-qualified - consider for interview",
+      "Highlight matched skills during interview process"
+    ],
+    "short_term": [
+      "Focus development on: scikit-learn"
+    ],
+    "long_term": [
+      "Continue professional development in emerging technologies"
+    ]
+  }
+}

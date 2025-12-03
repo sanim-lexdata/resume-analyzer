@@ -1,0 +1,46 @@
+======================================================================
+RESUME ANALYSIS REPORT
+======================================================================
+
+Generated: 2025-12-02 10:52:46
+Resume: resume.txt
+Position: Data analyst
+
+----------------------------------------------------------------------
+OVERALL MATCH SCORE
+----------------------------------------------------------------------
+Final Score: 82.19/100
+Rating: Strong Match
+
+----------------------------------------------------------------------
+SKILL ANALYSIS
+----------------------------------------------------------------------
+Required Skills: 8
+Matched Skills: 7
+Match Percentage: 87.5%
+
+Matched Skills (7):
+  ✓ pandas
+  ✓ tableau
+  ✓ machine learning
+  ✓ numpy
+  ✓ power bi
+  ✓ python
+  ✓ sql
+
+Missing Skills (1):
+  ✗ scikit-learn
+
+----------------------------------------------------------------------
+STRENGTHS
+----------------------------------------------------------------------
+1. Excellent skill match (87.5%) with job requirements
+2. High semantic alignment with job description
+
+----------------------------------------------------------------------
+RECOMMENDATIONS
+----------------------------------------------------------------------
+Areas for Improvement:
+  • Develop skills in: scikit-learn
+
+======================================================================

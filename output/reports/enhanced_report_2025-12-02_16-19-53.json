@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-02T16:19:53.414653",
+    "job_title": "Position",
+    "analyzer_version": "2.0.0"
+  },
+  "contact_info": {
+    "email": null,
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "overall_score": {
+    "final_score": 79.8,
+    "rating": "Good Match",
+    "breakdown": {
+      "skill_score": 100.0,
+      "semantic_score": 62.6,
+      "experience_score": 70.0,
+      "qualification_score": 70.0
+    }
+  },
+  "skills_analysis": {
+    "matched_exact": [
+      "programming_languages",
+      "machine_learning",
+      "data_analysis"
+    ],
+    "matched_fuzzy": [],
+    "matched_semantic": [
+      "programming_languages",
+      "data_analysis",
+      "machine_learning"
+    ],
+    "missing": [
+      "cloud"
+    ],
+    "extra": [
+      "database",
+      "extracted_entities"
+    ],
+    "total_matched": 6,
+    "total_required": 7,
+    "match_rate": 85.7
+  },
+  "semantic_analysis": {
+    "overall_similarity": 0.626,
+    "interpretation": "Moderate semantic alignment with job requirements"
+  },
+  "experience_analysis": {
+    "candidate_experience": 0,
+    "required_experience": 0,
+    "gap": 0,
+    "gap_percentage": 0.0,
+    "status": "no_requirement",
+    "message": "No specific experience requirement mentioned",
+    "recommendation": "Highlight relevant skills and projects"
+  },
+  "strengths": [
+    "Strong skill match with 3 exact and 0 similar skill matches",
+    "Additional relevant skills: database, extracted_entities",
+    "Proficient in key required skills: programming_languages, machine_learning, data_analysis"
+  ],
+  "recommendations": [
+    "Priority skills to acquire: cloud",
+    "Highlight your relevant skills and projects more prominently in your resume",
+    "Good match overall. Consider adding specific examples of projects using required skills"
+  ],
+  "summary": "Overall Assessment: Good Match (79.8/100) | Skills: 3 matched (3 exact, 0 similar), 1 missing | Experience: No specific experience requirement mentioned | Recommendation: Good candidate. Consider applying with tailored resume."
+}

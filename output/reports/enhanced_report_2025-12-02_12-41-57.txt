@@ -1,0 +1,30 @@
+======================================================================
+ENHANCED RESUME ANALYSIS REPORT
+======================================================================
+
+Final Score: 40.1/100
+Rating: Weak Match
+
+Score Breakdown:
+  • Skill Match: 0.0/100
+  • Semantic Similarity: 63.8/100
+  • Experience: 70.0/100
+  • Qualifications: 70.0/100
+
+Skills Analysis:
+  Matched (Exact): 0
+  Matched (Fuzzy): 0
+  Matched (Semantic): 0
+  Missing: 1
+  Extra: 1
+
+Experience Analysis:
+  No specific experience requirement mentioned
+  Recommendation: Highlight relevant skills and projects
+
+Recommendations:
+  1. Consider acquiring key missing skills through courses or projects
+  2. Priority skills to acquire: soft_skills
+  3. Significant skill gaps identified. Consider targeted learning or look for roles that better match your current skill set
+
+======================================================================

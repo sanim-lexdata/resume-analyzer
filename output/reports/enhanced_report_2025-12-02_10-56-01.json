@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-02 10:56:01",
+    "resume_file": "resume.txt",
+    "job_title": "Data analyst"
+  },
+  "overall_score": {
+    "final_score": 82.19,
+    "rating": "Very Good Match",
+    "breakdown": {
+      "skill_score": 0,
+      "semantic_score": 0,
+      "experience_score": 0,
+      "qualification_score": 0
+    }
+  },
+  "skills_analysis": {
+    "total_required_skills": 9,
+    "total_matched_skills": 14,
+    "exact_matches": 7,
+    "fuzzy_matches": 0,
+    "semantic_matches": 7,
+    "missing_skills_count": 0,
+    "extra_skills_count": 0,
+    "match_percentage": 155.55555555555557
+  },
+  "experience_analysis": {
+    "candidate_experience": 0,
+    "required_experience": 0,
+    "gap": 0,
+    "gap_percentage": 0.0,
+    "status": "no_requirement",
+    "message": "No specific experience requirement mentioned",
+    "recommendation": "Highlight relevant skills and projects"
+  },
+  "contact_info": {},
+  "strengths": [
+    "Good technical foundation with 7 core skills",
+    "Good contextual match with job description"
+  ],
+  "recommendations": [
+    {
+      "priority": "MEDIUM",
+      "category": "Experience",
+      "issue": "No specific experience requirement mentioned",
+      "action": "Highlight relevant skills and projects",
+      "impact": "Medium - Experience gap can be addressed"
+    }
+  ],
+  "detailed_matching": {
+    "matched_skills": [
+      "pandas",
+      "sql",
+      "power bi",
+      "tableau",
+      "machine learning",
+      "numpy",
+      "python"
+    ],
+    "fuzzy_matched_skills": [],
+    "semantic_matched_skills": [
+      {
+        "jd_skill": "pandas",
+        "resume_skill": "pandas",
+        "similarity": 0.9999999403953552
+      },
+      {
+        "jd_skill": "sql",
+        "resume_skill": "sql",
+        "similarity": 0.9999998807907104
+      },
+      {
+        "jd_skill": "power bi",
+        "resume_skill": "power bi",
+        "similarity": 1.0
+      },
+      {
+        "jd_skill": "tableau",
+        "resume_skill": "tableau",
+        "similarity": 1.0000001192092896
+      },
+      {
+        "jd_skill": "Machine learning",
+        "resume_skill": "Machine learning",
+        "similarity": 1.000000238418579
+      },
+      {
+        "jd_skill": "numpy",
+        "resume_skill": "numpy",
+        "similarity": 1.0
+      },
+      {
+        "jd_skill": "python",
+        "resume_skill": "python",
+        "similarity": 1.0
+      }
+    ],
+    "missing_skills": [],
+    "extra_skills": []
+  },
+  "taxonomy_sources": {
+    "custom": 7,
+    "esco": 4,
+    "onet": 5,
+    "total_categories": 16
+  },
+  "raw_data": {
+    "traditional_skills": {
+      "programming_languages": [
+        "sql",
+        "python"
+      ],
+      "data_analysis": [
+        "pandas",
+        "power bi",
+        "tableau",
+        "excel",
+        "numpy"
+      ],
+      "esco_technical_skills": [
+        "Machine learning"
+      ],
+      "onet_basic_skills": [
+        "Science"
+      ],
+      "extracted_entities": [
+        "NYU",
+        "USA",
+        "AnalyticsCorp",
+        "New York",
+        "Bachelor of Science in Statistics",
+        "Tableau\n- Machine Learning"
+      ]
+    },
+    "hf_extracted_skills": {
+      "programming_languages": [
+        "New York"
+      ]
+    },
+    "merged_resume_skills": {
+      "programming_languages": [
+        "New York",
+        "sql",
+        "python"
+      ],
+      "data_analysis": [
+        "pandas",
+        "power bi",
+        "tableau",
+        "excel",
+        "numpy"
+      ],
+      "esco_technical_skills": [
+        "Machine learning"
+      ],
+      "onet_basic_skills": [
+        "Science"
+      ],
+      "extracted_entities": [
+        "NYU",
+        "USA",
+        "AnalyticsCorp",
+        "New York",
+        "Bachelor of Science in Statistics",
+        "Tableau\n- Machine Learning"
+      ]
+    },
+    "semantic_similarity": 0.7062413692474365
+  }
+}

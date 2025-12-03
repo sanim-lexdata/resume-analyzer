@@ -1,0 +1,36 @@
+Machine Learning Engineer - Job Description
+
+Role Overview:
+We are seeking a Machine Learning Engineer to design, develop, and deploy machine learning models into production environments. The ideal candidate will have strong experience in ML algorithms, deep learning, data processing, and working with scalable systems.
+
+Responsibilities:
+- Develop and train machine learning and deep learning models.
+- Build data pipelines for training and inference.
+- Deploy ML models using cloud or on-premise infrastructure.
+- Work with cross-functional teams including data scientists, software engineers, and product teams.
+- Optimize model performance and ensure scalability.
+- Analyze data, clean datasets, and perform feature engineering.
+- Maintain model documentation and experiment logs.
+
+Required Skills:
+- Python, NumPy, Pandas, Scikit-learn
+- Deep Learning frameworks: TensorFlow or PyTorch
+- NLP, Computer Vision, or Recommendation Systems experience
+- Experience with Docker, Kubernetes, CI/CD pipelines
+- Experience with HuggingFace, spaCy, or Transformers
+- Knowledge of ML lifecycle tools: MLflow, DVC, Airflow
+- Experience with cloud platforms (AWS/GCP/Azure)
+
+Preferred Skills:
+- Experience deploying ML models to APIs
+- Familiarity with vector databases and embeddings
+- Experience with distributed training (Horovod, Ray, Dask)
+
+Education:
+- Bachelor's or Master's degree in Computer Science, Machine Learning, Data Science, or related field.
+
+Location:
+Remote / Dhaka
+
+Salary:
+Competitive and based on experience.

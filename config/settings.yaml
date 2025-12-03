@@ -1,0 +1,100 @@
+# Application Settings
+app:
+  name: "Enhanced AI Resume Analyzer"
+  version: "2.0.0"
+  features:
+    - "HuggingFace Transformers NER"
+    - "ESCO Taxonomy Integration"
+    - "O*NET Database Integration"
+    - "Multi-source Skill Extraction"
+  
+# Paths
+paths:
+  input_resumes: "input/resumes/"
+  input_jd: "input/job_descriptions/"
+  output_reports: "output/reports/"
+  output_logs: "output/logs/"
+  skills_dict: "data/skills_dictionary.json"
+  models_dir: "models/"
+  esco_cache: "data/esco_cache/"
+  onet_cache: "data/onet_cache/"
+
+# Model Settings
+models:
+  # Traditional NLP
+  spacy_model: "en_core_web_md"  # or en_core_web_lg for better accuracy
+  
+  # Sentence Embeddings
+  sentence_transformer: "all-MiniLM-L6-v2"  # Fast and efficient
+  # Alternatives:
+  # - "all-mpnet-base-v2" (better quality, slower)
+  # - "paraphrase-multilingual-MiniLM-L12-v2" (multilingual)
+  
+  # HuggingFace Transformers
+  hf_ner_model: "jjzha/jobbert_skill_extraction"  # Job-specific NER
+  # Alternatives:
+  # - "dslim/bert-base-NER" (general NER)
+  # - "dbmdz/bert-large-cased-finetuned-conll03-english" (larger model)
+  
+  # Model confidence thresholds
+  hf_confidence_threshold: 0.7
+  
+# Scoring Weights
+scoring:
+  weights:
+    skill_match: 0.40              # 40% - Exact & fuzzy skill matching
+    semantic_similarity: 0.30       # 30% - Overall text similarity
+    experience_relevance: 0.20      # 20% - Years of experience
+    additional_qualifications: 0.10 # 10% - Certifications, education
+  
+  thresholds:
+    semantic_similarity: 0.65       # Minimum similarity for semantic matching
+    skill_fuzzy_match: 0.85         # Minimum ratio for fuzzy string matching
+    hf_entity_confidence: 0.70      # Minimum confidence for HF entities
+
+# Skill Taxonomy Settings
+taxonomy:
+  use_esco: true                    # Use ESCO European taxonomy
+  use_onet: true                    # Use O*NET US taxonomy
+  use_custom: true                  # Use custom skills dictionary
+  
+  # Auto-refresh taxonomy cache (days)
+  cache_refresh_days: 30
+  
+  # Merge strategy: "union" or "intersection"
+  merge_strategy: "union"
+
+# Extraction Settings
+extraction:
+  clean_text: true
+  remove_stopwords: false           # Keep for better context
+  lowercase: true
+  
+  # Document structure extraction
+  extract_sections: true            # Extract resume sections
+  extract_contact_info: true        # Extract contact information
+  extract_bullet_points: true       # Extract achievement bullets
+  
+  # HuggingFace extraction
+  hf_batch_size: 8                  # Batch size for HF processing
+  hf_max_length: 512                # Max token length per chunk
+  
+# Output Settings
+output:
+  format: "json"                    # json, text, html, pdf
+  detailed_report: true
+  include_suggestions: true
+  include_hf_entities: true         # Include HF extracted entities
+  include_taxonomy_breakdown: true  # Show skills by taxonomy source
+  
+# Performance Settings
+performance:
+  enable_gpu: false                 # Use GPU for HF models (if available)
+  num_workers: 4                    # Parallel processing workers
+  cache_embeddings: true            # Cache sentence embeddings
+  
+# Logging Settings
+logging:
+  level: "INFO"                     # DEBUG, INFO, WARNING, ERROR
+  log_to_file: true
+  log_to_console: true

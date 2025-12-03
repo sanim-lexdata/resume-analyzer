@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-02T16:03:08.895501",
+    "job_title": "Position",
+    "analyzer_version": "2.0.0"
+  },
+  "contact_info": {
+    "email": null,
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "overall_score": {
+    "final_score": 31.9,
+    "rating": "Weak Match",
+    "breakdown": {
+      "skill_score": 0.0,
+      "semantic_score": 36.5,
+      "experience_score": 70.0,
+      "qualification_score": 70.0
+    }
+  },
+  "skills_analysis": {
+    "matched_exact": [],
+    "matched_fuzzy": [],
+    "matched_semantic": [],
+    "missing": [
+      "soft_skills"
+    ],
+    "extra": [
+      "extracted_entities",
+      "data_analysis",
+      "machine_learning",
+      "programming_languages",
+      "database"
+    ],
+    "total_matched": 0,
+    "total_required": 1,
+    "match_rate": 0.0
+  },
+  "semantic_analysis": {
+    "overall_similarity": 0.365,
+    "interpretation": "Low semantic alignment with job requirements"
+  },
+  "experience_analysis": {
+    "candidate_experience": 0,
+    "required_experience": 0,
+    "gap": 0,
+    "gap_percentage": 0.0,
+    "status": "no_requirement",
+    "message": "No specific experience requirement mentioned",
+    "recommendation": "Highlight relevant skills and projects"
+  },
+  "strengths": [
+    "Additional relevant skills: extracted_entities, data_analysis, machine_learning"
+  ],
+  "recommendations": [
+    "Consider acquiring key missing skills through courses or projects",
+    "Priority skills to acquire: soft_skills",
+    "Significant skill gaps identified. Consider targeted learning or look for roles that better match your current skill set"
+  ],
+  "summary": "Overall Assessment: Weak Match (31.9/100) | Skills: 0 matched (0 exact, 0 similar), 1 missing | Experience: No specific experience requirement mentioned | Recommendation: Address significant skill gaps or consider alternative positions."
+}

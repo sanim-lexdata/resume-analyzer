@@ -1,0 +1,33 @@
+Job Title: Python Backend Developer
+
+Company: Tech Solutions Inc.
+
+Role Overview:
+We are seeking a skilled Python Backend Developer to design and implement scalable backend systems, APIs, and database-driven applications.
+
+Responsibilities:
+- Develop and maintain backend applications using Python (Django/Flask/FastAPI).
+- Build and optimize RESTful APIs and microservices.
+- Design and manage relational and NoSQL databases (PostgreSQL, MySQL, MongoDB).
+- Ensure code quality with testing, CI/CD pipelines, and version control.
+- Collaborate with frontend developers, product managers, and QA teams.
+- Optimize system performance, reliability, and scalability.
+- Maintain technical documentation and adhere to best practices.
+
+Required Skills:
+- Strong Python programming skills.
+- Experience with Django, Flask, or FastAPI frameworks.
+- Knowledge of RESTful API design and microservices.
+- Experience with SQL and NoSQL databases.
+- Familiarity with version control (Git) and CI/CD workflows.
+- Understanding of containerization (Docker) and cloud platforms (AWS, GCP, Azure).
+
+Preferred Skills:
+- Experience with message brokers (RabbitMQ, Kafka).
+- Knowledge of GraphQL.
+- Experience with caching mechanisms (Redis, Memcached).
+- Familiarity with unit testing and integration testing.
+
+Education:
+- Bachelor’s degree in Computer Science, Software Engineering, or related field.
+- 2+ years of experience in backend development.

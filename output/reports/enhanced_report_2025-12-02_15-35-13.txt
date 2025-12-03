@@ -1,0 +1,29 @@
+======================================================================
+ENHANCED RESUME ANALYSIS REPORT
+======================================================================
+
+Final Score: 82.1/100
+Rating: Very Good Match
+
+Score Breakdown:
+  • Skill Match: 100.0/100
+  • Semantic Similarity: 70.4/100
+  • Experience: 70.0/100
+  • Qualifications: 70.0/100
+
+Skills Analysis:
+  Matched (Exact): 1
+  Matched (Fuzzy): 0
+  Matched (Semantic): 1
+  Missing: 0
+  Extra: 4
+
+Experience Analysis:
+  No specific experience requirement mentioned
+  Recommendation: Highlight relevant skills and projects
+
+Recommendations:
+  1. Highlight your relevant skills and projects more prominently in your resume
+  2. Excellent match! Tailor your resume to emphasize relevant experience and projects
+
+======================================================================

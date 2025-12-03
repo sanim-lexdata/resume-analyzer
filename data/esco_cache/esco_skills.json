@@ -1,0 +1,140 @@
+{
+  "technical_skills": [
+    {
+      "id": "S1",
+      "name": "Python programming",
+      "description": "Programming in Python language"
+    },
+    {
+      "id": "S2",
+      "name": "Java programming",
+      "description": "Programming in Java language"
+    },
+    {
+      "id": "S3",
+      "name": "JavaScript programming",
+      "description": "Programming in JavaScript"
+    },
+    {
+      "id": "S4",
+      "name": "SQL database management",
+      "description": "Managing SQL databases"
+    },
+    {
+      "id": "S5",
+      "name": "Cloud computing",
+      "description": "Working with cloud platforms"
+    },
+    {
+      "id": "S6",
+      "name": "Machine learning",
+      "description": "Implementing ML algorithms"
+    },
+    {
+      "id": "S7",
+      "name": "Data analysis",
+      "description": "Analyzing data sets"
+    },
+    {
+      "id": "S8",
+      "name": "Web development",
+      "description": "Developing web applications"
+    },
+    {
+      "id": "S9",
+      "name": "API development",
+      "description": "Creating RESTful APIs"
+    },
+    {
+      "id": "S10",
+      "name": "DevOps practices",
+      "description": "Implementing DevOps methodologies"
+    }
+  ],
+  "transversal_skills": [
+    {
+      "id": "T1",
+      "name": "Problem solving",
+      "description": "Analytical problem solving"
+    },
+    {
+      "id": "T2",
+      "name": "Team collaboration",
+      "description": "Working effectively in teams"
+    },
+    {
+      "id": "T3",
+      "name": "Communication",
+      "description": "Effective communication skills"
+    },
+    {
+      "id": "T4",
+      "name": "Leadership",
+      "description": "Leading teams and projects"
+    },
+    {
+      "id": "T5",
+      "name": "Time management",
+      "description": "Managing time effectively"
+    },
+    {
+      "id": "T6",
+      "name": "Critical thinking",
+      "description": "Analytical and critical thinking"
+    },
+    {
+      "id": "T7",
+      "name": "Adaptability",
+      "description": "Adapting to change"
+    },
+    {
+      "id": "T8",
+      "name": "Project management",
+      "description": "Managing projects"
+    }
+  ],
+  "language_skills": [
+    {
+      "id": "L1",
+      "name": "English",
+      "description": "English language proficiency"
+    },
+    {
+      "id": "L2",
+      "name": "Spanish",
+      "description": "Spanish language proficiency"
+    },
+    {
+      "id": "L3",
+      "name": "French",
+      "description": "French language proficiency"
+    },
+    {
+      "id": "L4",
+      "name": "German",
+      "description": "German language proficiency"
+    }
+  ],
+  "digital_skills": [
+    {
+      "id": "D1",
+      "name": "Digital literacy",
+      "description": "Basic digital competence"
+    },
+    {
+      "id": "D2",
+      "name": "Cybersecurity",
+      "description": "Information security practices"
+    },
+    {
+      "id": "D3",
+      "name": "Data privacy",
+      "description": "Understanding data protection"
+    },
+    {
+      "id": "D4",
+      "name": "Digital marketing",
+      "description": "Online marketing skills"
+    }
+  ]
+}

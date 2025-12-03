@@ -1,0 +1,30 @@
+======================================================================
+ENHANCED RESUME ANALYSIS REPORT
+======================================================================
+
+Final Score: 76.3/100
+Rating: Good Match
+
+Score Breakdown:
+  • Skill Match: 100.0/100
+  • Semantic Similarity: 51.1/100
+  • Experience: 70.0/100
+  • Qualifications: 70.0/100
+
+Skills Analysis:
+  Matched (Exact): 3
+  Matched (Fuzzy): 0
+  Matched (Semantic): 3
+  Missing: 2
+  Extra: 1
+
+Experience Analysis:
+  No specific experience requirement mentioned
+  Recommendation: Highlight relevant skills and projects
+
+Recommendations:
+  1. Priority skills to acquire: etl_tools, cloud
+  2. Highlight your relevant skills and projects more prominently in your resume
+  3. Good match overall. Consider adding specific examples of projects using required skills
+
+======================================================================

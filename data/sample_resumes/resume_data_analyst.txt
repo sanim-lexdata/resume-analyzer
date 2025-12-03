@@ -1,0 +1,51 @@
+John Doe
+Email: john.doe@example.com
+Phone: +1 555-123-4567
+Location: New York, USA
+
+SUMMARY
+Data Analyst with 4+ years of experience in data cleaning, visualization, and predictive modeling. Skilled in Python, SQL, and BI tools with a strong understanding of statistical analysis and machine learning workflows.
+
+SKILLS
+• Python
+• SQL
+• Pandas
+• NumPy
+• Scikit-learn
+• Excel
+• Power BI
+• Data Visualization
+• Machine Learning
+• ETL Pipeline Development
+
+EXPERIENCE
+Data Analyst  
+ABC Corporation | New York, USA  
+Jan 2021 – Present
+• Designed and automated ETL pipelines for internal reporting.  
+• Built predictive models using Python and scikit-learn to forecast customer churn.  
+• Created interactive Power BI dashboards used by senior management.  
+• Improved data quality by developing validation scripts and anomaly detection rules.
+
+Junior Data Analyst  
+TechMetrics Inc. | New York, USA  
+Jun 2019 – Dec 2020
+• Cleaned and transformed raw datasets using Python and SQL.  
+• Collaborated with stakeholders to define reporting requirements.  
+• Performed statistical analysis to identify trends and KPIs.
+
+EDUCATION
+Bachelor of Science in Computer Science  
+New York University (2019)
+
+CERTIFICATIONS
+• Google Data Analytics Professional Certificate  
+• Microsoft Power BI Data Analyst Associate
+
+PROJECTS
+Customer Churn Prediction Model
+• Built a machine learning model using logistic regression and random forest to predict churn with 86% accuracy.
+
+Sales Dashboard Automation
+• Developed Power BI dashboards to track regional sales performance.
+

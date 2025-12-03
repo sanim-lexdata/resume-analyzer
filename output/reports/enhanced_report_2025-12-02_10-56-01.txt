@@ -1,0 +1,74 @@
+================================================================================
+RESUME ANALYSIS REPORT
+================================================================================
+
+Generated: 2025-12-02 10:56:01
+Resume: resume.txt
+Position: Data analyst
+
+--------------------------------------------------------------------------------
+OVERALL MATCH SCORE
+--------------------------------------------------------------------------------
+Final Score: 82.2/100
+Rating: Very Good Match
+
+Score Breakdown:
+  • Skill Match:          0.0/100
+  • Semantic Similarity:  0.0/100
+  • Experience Match:     0.0/100
+  • Qualifications:       0.0/100
+
+--------------------------------------------------------------------------------
+SKILLS ANALYSIS
+--------------------------------------------------------------------------------
+Required Skills: 9
+Matched Skills: 14 (155.6%)
+  • Exact Matches: 7
+  • Fuzzy Matches: 0
+  • Semantic Matches: 7
+Missing Skills: 0
+Additional Skills: 0
+
+Matched Skills (Exact):
+  ✓ pandas
+  ✓ sql
+  ✓ power bi
+  ✓ tableau
+  ✓ machine learning
+  ✓ numpy
+  ✓ python
+
+--------------------------------------------------------------------------------
+EXPERIENCE ANALYSIS
+--------------------------------------------------------------------------------
+Candidate Experience: 0 years
+Required Experience: 0 years
+Status: No Requirement
+Assessment: No specific experience requirement mentioned
+
+--------------------------------------------------------------------------------
+KEY STRENGTHS
+--------------------------------------------------------------------------------
+1. Good technical foundation with 7 core skills
+2. Good contextual match with job description
+
+--------------------------------------------------------------------------------
+RECOMMENDATIONS
+--------------------------------------------------------------------------------
+
+1. [MEDIUM] Experience
+   Issue: No specific experience requirement mentioned
+   Action: Highlight relevant skills and projects
+   Impact: Medium - Experience gap can be addressed
+
+--------------------------------------------------------------------------------
+ANALYSIS SOURCES
+--------------------------------------------------------------------------------
+Custom Skills: 7 categories
+ESCO Taxonomy: 4 categories
+O*NET Database: 5 categories
+Total Categories: 16
+
+================================================================================
+END OF REPORT
+================================================================================

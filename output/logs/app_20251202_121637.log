@@ -1,0 +1,22 @@
+2025-12-02 12:16:37 - __main__ - INFO - Initializing Enhanced Resume Analyzer with HF & ESCO/O*NET...
+2025-12-02 12:16:37 - __main__ - INFO - Loading skill taxonomies...
+2025-12-02 12:16:37 - __main__ - INFO - Loaded 4 ESCO skills
+2025-12-02 12:16:37 - __main__ - INFO - Loaded 5 O*NET skills
+2025-12-02 12:16:37 - __main__ - INFO - Total skill categories: 9
+2025-12-02 12:17:10 - __main__ - INFO - Enhanced Resume Analyzer initialized successfully!
+2025-12-02 12:17:10 - __main__ - INFO - ======================================================================
+2025-12-02 12:17:10 - __main__ - INFO - Starting Enhanced Resume Analysis
+2025-12-02 12:17:10 - __main__ - INFO - ======================================================================
+2025-12-02 12:17:10 - __main__ - INFO - Extracting text from: input/resumes/resume_python_developer.pdf
+2025-12-02 12:17:10 - __main__ - ERROR - Error extracting text: Could not extract text from PDF: input/resumes/resume_python_developer.pdf
+This PDF may be:
+  • Scanned/image-based (requires OCR)
+  • Corrupted or password-protected
+  • Empty
+Please convert to .txt or .docx format.
+2025-12-02 12:17:10 - __main__ - ERROR - Error during analysis: Could not extract text from PDF: input/resumes/resume_python_developer.pdf
+This PDF may be:
+  • Scanned/image-based (requires OCR)
+  • Corrupted or password-protected
+  • Empty
+Please convert to .txt or .docx format.

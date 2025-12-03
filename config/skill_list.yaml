@@ -1,0 +1,65 @@
+{
+  "programming_languages": [
+    "Python", "Java", "JavaScript", "TypeScript", "C++", "C#", "Go", "Rust",
+    "Ruby", "PHP", "Swift", "Kotlin", "Scala", "R", "MATLAB", "Perl",
+    "Dart", "Objective-C", "Shell", "Bash", "PowerShell"
+  ],
+  "web_technologies": [
+    "HTML", "CSS", "React", "Angular", "Vue.js", "Node.js", "Express.js",
+    "Django", "Flask", "FastAPI", "Spring Boot", "ASP.NET", "jQuery",
+    "Bootstrap", "Tailwind CSS", "Next.js", "Nuxt.js", "Svelte", "Redux",
+    "GraphQL", "REST API", "WebSocket", "AJAX"
+  ],
+  "databases": [
+    "MySQL", "PostgreSQL", "MongoDB", "Redis", "Oracle", "SQL Server",
+    "SQLite", "Cassandra", "DynamoDB", "Firebase", "Elasticsearch",
+    "Neo4j", "MariaDB", "CouchDB", "InfluxDB"
+  ],
+  "cloud_platforms": [
+    "AWS", "Azure", "Google Cloud Platform", "GCP", "Heroku", "DigitalOcean",
+    "IBM Cloud", "Oracle Cloud", "Alibaba Cloud", "Cloudflare"
+  ],
+  "devops_tools": [
+    "Docker", "Kubernetes", "Jenkins", "GitLab CI", "GitHub Actions",
+    "Travis CI", "CircleCI", "Ansible", "Terraform", "Vagrant", "Chef",
+    "Puppet", "Prometheus", "Grafana", "Nagios", "ELK Stack"
+  ],
+  "version_control": [
+    "Git", "GitHub", "GitLab", "Bitbucket", "SVN", "Mercurial"
+  ],
+  "data_science_ml": [
+    "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "Pandas", "NumPy",
+    "Matplotlib", "Seaborn", "Jupyter", "Apache Spark", "Hadoop",
+    "Machine Learning", "Deep Learning", "Natural Language Processing",
+    "NLP", "Computer Vision", "Data Analysis", "Data Visualization",
+    "Statistical Analysis", "A/B Testing"
+  ],
+  "mobile_development": [
+    "Android", "iOS", "React Native", "Flutter", "Xamarin", "Ionic",
+    "SwiftUI", "Jetpack Compose"
+  ],
+  "testing": [
+    "Pytest", "JUnit", "Selenium", "Cypress", "Jest", "Mocha", "Chai",
+    "TestNG", "Postman", "JMeter", "Unit Testing", "Integration Testing",
+    "End-to-End Testing", "Test Automation"
+  ],
+  "soft_skills": [
+    "Leadership", "Communication", "Team Collaboration", "Problem Solving",
+    "Critical Thinking", "Time Management", "Project Management",
+    "Agile Methodology", "Scrum", "Stakeholder Management",
+    "Presentation Skills", "Analytical Skills", "Adaptability"
+  ],
+  "certifications": [
+    "AWS Certified", "Azure Certified", "Google Cloud Certified",
+    "PMP", "Scrum Master", "CISSP", "CompTIA", "Oracle Certified",
+    "Microsoft Certified", "Kubernetes Certified"
+  ],
+  "design_tools": [
+    "Figma", "Adobe XD", "Sketch", "Photoshop", "Illustrator", "InVision",
+    "Canva", "UI/UX Design"
+  ],
+  "business_tools": [
+    "Excel", "PowerPoint", "Tableau", "Power BI", "Salesforce", "JIRA",
+    "Confluence", "Trello", "Asana", "Monday.com", "Slack", "Microsoft Teams"
+  ]
+}
