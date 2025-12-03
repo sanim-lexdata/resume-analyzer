@@ -60,6 +60,13 @@ st.markdown("""
         margin: 2px;
         display: inline-block;
     }
+    .skill-extra {
+        background: #cfe2ff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 2px;
+        display: inline-block;
+    }
     .score-box {
         padding: 20px;
         border-radius: 10px;
@@ -67,18 +74,15 @@ st.markdown("""
         font-size: 1.2rem;
         font-weight: bold;
     }
-    .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .comparison-table th, .comparison-table td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-    .comparison-table th {
-        background-color: #f2f2f2;
+    .candidate-name {
+        font-size: 1.3rem;
         font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+    .filename-subtitle {
+        font-size: 0.9rem;
+        color: #7f8c8d;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -134,6 +138,31 @@ class ResumeAnalyzer:
         self.jd_skills = []
         self.jd_keywords = []
         self.jd_requirements = []
+    
+    def extract_person_name(self, text):
+        """Extract person's name from resume (usually at the top)."""
+        lines = text.strip().split('\n')
+        
+        # Check first 5 lines for name
+        for line in lines[:5]:
+            line = line.strip()
+            # Name is usually 2-4 words, all capitalized, no numbers
+            words = line.split()
+            if 2 <= len(words) <= 4:
+                # Check if all words start with capital and no numbers
+                if all(w[0].isupper() and not any(c.isdigit() for c in w) for w in words if len(w) > 1):
+                    # Avoid common headers
+                    if not any(header in line.lower() for header in ['resume', 'curriculum', 'cv', 'contact', 'email', 'phone', 'address']):
+                        return line
+        
+        # Fallback: look for name pattern anywhere in first 500 chars
+        first_section = text[:500]
+        name_pattern = r'\b([A-Z][a-z]+ [A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\b'
+        matches = re.findall(name_pattern, first_section)
+        if matches:
+            return matches[0]
+        
+        return "Unknown Candidate"
     
     def extract_skills(self, text):
         """Extract skills from text"""
@@ -242,6 +271,9 @@ class ResumeAnalyzer:
     def compare_resume_to_jd(self, resume_text, resume_filename):
         """Detailed comparison of resume against job description"""
         
+        # Extract person name
+        person_name = self.extract_person_name(resume_text)
+        
         # Extract from resume
         resume_skills = self.extract_skills(resume_text)
         resume_keywords = self.extract_keywords(resume_text)
@@ -267,6 +299,16 @@ class ResumeAnalyzer:
                 else:
                     missing_skills.append(jd_skill)
         
+        # Calculate extra skills (skills in resume but not in JD)
+        jd_skills_lower = set([s.lower() for s in self.jd_skills])
+        extra_skills = []
+        for skill in resume_skills:
+            skill_lower = skill.lower()
+            # Check if this skill is not in JD and not already matched
+            if not any(jd_skill.lower() in skill_lower or skill_lower in jd_skill.lower() 
+                      for jd_skill in self.jd_skills):
+                extra_skills.append(skill)
+        
         # Keyword comparison
         matched_keywords = []
         for jd_kw in self.jd_keywords[:20]:
@@ -276,7 +318,11 @@ class ResumeAnalyzer:
         # Calculate scores
         skill_match_score = len(matched_skills) / len(self.jd_skills) * 100 if self.jd_skills else 0
         keyword_match_score = len(matched_keywords) / min(20, len(self.jd_keywords)) * 100 if self.jd_keywords else 0
-        overall_score = (skill_match_score * 0.6 + keyword_match_score * 0.4)
+        
+        # Bonus for extra skills
+        extra_skill_bonus = min(len(extra_skills) * 2, 10)
+        overall_score = (skill_match_score * 0.6 + keyword_match_score * 0.4) + extra_skill_bonus
+        overall_score = min(overall_score, 100)  # Cap at 100
         
         # Extract experience years
         exp_pattern = r'(\d+)\+?\s*(?:years?|yrs?)'
@@ -287,6 +333,7 @@ class ResumeAnalyzer:
         ats_score = self.calculate_ats_score(resume_text)
         
         return {
+            'person_name': person_name,
             'filename': resume_filename,
             'overall_score': round(overall_score, 1),
             'skill_match_score': round(skill_match_score, 1),
@@ -295,6 +342,7 @@ class ResumeAnalyzer:
             'matched_skills': matched_skills,
             'partial_skills': partial_skills,
             'missing_skills': missing_skills,
+            'extra_skills': extra_skills,
             'matched_keywords': matched_keywords,
             'missing_keywords': [k for k in self.jd_keywords[:20] if k not in matched_keywords],
             'resume_skills': resume_skills,
@@ -423,23 +471,27 @@ def main():
         
         # Summary view
         st.subheader("📈 Overview")
-        cols = st.columns(len(results))
+        cols = st.columns(min(len(results), 4))
         for idx, (col, result) in enumerate(zip(cols, results)):
             with col:
                 medal = "🥇" if idx == 0 else "🥈" if idx == 1 else "🥉" if idx == 2 else ""
-                st.markdown(f"### {medal} {result['filename'][:20]}...")
+                st.markdown(f'<div class="candidate-name">{medal} {result["person_name"]}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="filename-subtitle">{result["filename"][:25]}</div>', unsafe_allow_html=True)
                 st.metric("Overall Score", f"{result['overall_score']}%")
                 st.metric("Skills Match", f"{result['skill_match_score']}%")
-                st.metric("ATS Score", f"{result['ats_score']}%")
+                st.metric("Extra Skills", f"+{len(result['extra_skills'])}")
         
         st.divider()
         
         # Detailed comparison for each resume
         for idx, result in enumerate(results):
-            st.subheader(f"{'🥇' if idx == 0 else '🥈' if idx == 1 else '🥉' if idx == 2 else '📄'} {result['filename']}")
+            medal = '🥇' if idx == 0 else '🥈' if idx == 1 else '🥉' if idx == 2 else '📄'
+            st.markdown(f'<h3>{medal} <span class="candidate-name">{result["person_name"]}</span></h3>', unsafe_allow_html=True)
+            st.markdown(f'<div class="filename-subtitle">File: {result["filename"]}</div>', unsafe_allow_html=True)
+            st.write("")
             
             # Score cards
-            col1, col2, col3, col4 = st.columns(4)
+            col1, col2, col3, col4, col5 = st.columns(5)
             with col1:
                 st.markdown(f"""
                 <div class="score-box" style="background: {'#d4edda' if result['overall_score'] >= 70 else '#fff3cd' if result['overall_score'] >= 50 else '#f8d7da'}">
@@ -468,8 +520,15 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
             
+            with col5:
+                st.markdown(f"""
+                <div class="score-box" style="background: #cfe2ff">
+                    Extra Skills<br>+{len(result['extra_skills'])}
+                </div>
+                """, unsafe_allow_html=True)
+            
             # Detailed breakdown
-            tab1, tab2, tab3, tab4 = st.tabs(["Skills Comparison", "Keywords", "Resume Info", "Recommendations"])
+            tab1, tab2, tab3, tab4, tab5 = st.tabs(["Skills Comparison", "Extra Skills", "Keywords", "Resume Info", "Recommendations"])
             
             with tab1:
                 st.write("### Skills Analysis")
@@ -505,6 +564,20 @@ def main():
                 st.write(", ".join(result['resume_skills']))
             
             with tab2:
+                st.write("### 🌟 Additional Skills Beyond Job Requirements")
+                if result['extra_skills']:
+                    st.success(f"This candidate has **{len(result['extra_skills'])} additional valuable skills** not mentioned in the job description!")
+                    st.write("")
+                    st.write("**Extra Skills:**")
+                    for skill in result['extra_skills']:
+                        st.markdown(f'<span class="skill-extra">➕ {skill}</span>', unsafe_allow_html=True)
+                    st.write("")
+                    st.info("💡 These extra skills could bring additional value to the role and team.")
+                else:
+                    st.write("No additional skills beyond job requirements found.")
+                    st.info("This candidate's skills closely match the job requirements without additional expertise.")
+            
+            with tab3:
                 st.write("### Keyword Analysis")
                 
                 col1, col2 = st.columns(2)
@@ -523,26 +596,36 @@ def main():
                     else:
                         st.write("None")
             
-            with tab3:
+            with tab4:
                 st.write("### Resume Information")
+                st.write(f"**Candidate Name:** {result['person_name']}")
                 st.write(f"**Years of Experience:** {result['years_experience']} years")
                 st.write(f"**ATS Compatibility:** {result['ats_score']}%")
                 st.write(f"**Total Skills Found:** {len(result['resume_skills'])}")
+                st.write(f"**Matched Skills:** {len(result['matched_skills'])}")
+                st.write(f"**Extra Skills:** {len(result['extra_skills'])}")
             
-            with tab4:
+            with tab5:
                 st.write("### Recommendations")
                 
                 if result['overall_score'] >= 70:
-                    st.success("✅ Strong candidate! This resume is a good match for the position.")
+                    st.success(f"✅ **Strong candidate!** {result['person_name']} is an excellent match for the position.")
+                    if result['extra_skills']:
+                        st.info(f"➕ Bonus: Has {len(result['extra_skills'])} additional skills that could add value!")
                 elif result['overall_score'] >= 50:
-                    st.warning("⚠️ Moderate match. Consider reviewing missing skills.")
+                    st.warning(f"⚠️ **Moderate match.** {result['person_name']} meets some requirements but review missing skills.")
                 else:
-                    st.error("❌ Low match. This candidate may not meet the requirements.")
+                    st.error(f"❌ **Low match.** {result['person_name']} may not meet the core requirements.")
                 
                 if result['missing_skills']:
                     st.write("**Skills to Highlight or Acquire:**")
                     for skill in result['missing_skills'][:5]:
                         st.write(f"- {skill}")
+                
+                if result['extra_skills'] and result['overall_score'] >= 60:
+                    st.write("**Value-Add Skills:**")
+                    for skill in result['extra_skills'][:5]:
+                        st.write(f"+ {skill}")
                 
                 if result['ats_score'] < 80:
                     st.write("**ATS Improvement Suggestions:**")

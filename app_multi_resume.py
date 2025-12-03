@@ -89,6 +89,31 @@ class AdvancedResumeAnalyzer:
         except Exception as e:
             return f"Error extracting text: {str(e)}"
     
+    def extract_person_name(self, text):
+        """Extract person's name from resume (usually at the top)."""
+        lines = text.strip().split('\n')
+        
+        # Check first 5 lines for name
+        for line in lines[:5]:
+            line = line.strip()
+            # Name is usually 2-4 words, all capitalized, no numbers
+            words = line.split()
+            if 2 <= len(words) <= 4:
+                # Check if all words start with capital and no numbers
+                if all(w[0].isupper() and not any(c.isdigit() for c in w) for w in words if len(w) > 1):
+                    # Avoid common headers
+                    if not any(header in line.lower() for header in ['resume', 'curriculum', 'cv', 'contact', 'email', 'phone']):
+                        return line
+        
+        # Fallback: look for name pattern anywhere in first 500 chars
+        first_section = text[:500]
+        name_pattern = r'\b([A-Z][a-z]+ [A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\b'
+        matches = re.findall(name_pattern, first_section)
+        if matches:
+            return matches[0]
+        
+        return "Unknown"
+    
     def extract_dynamic_skills(self, text):
         """Extract skills dynamically from text without predefined list."""
         text_lower = text.lower()
@@ -221,11 +246,22 @@ class AdvancedResumeAnalyzer:
         if not text or text.startswith("Error"):
             return None
         
+        # Extract person name
+        person_name = self.extract_person_name(text)
+        
         # Extract information
         sections = self.extract_sections(text)
         skills, years_exp = self.extract_dynamic_skills(text)
         match_score, matched_keywords, missing_keywords = self.calculate_keyword_match(text, job_description)
         ats_score = self.calculate_ats_score(text, sections)
+        
+        # Calculate extra skills (skills in resume but not in job description)
+        extra_skills = []
+        if job_description:
+            jd_skills_lower = set([s.lower() for s in self.extract_dynamic_skills(job_description)[0]])
+            resume_skills_lower = set([s.lower() for s in skills])
+            extra_skills_set = resume_skills_lower - jd_skills_lower
+            extra_skills = [s for s in skills if s.lower() in extra_skills_set]
         
         # Calculate overall score (weighted average)
         overall_score = (match_score * 0.5) + (ats_score * 0.3) + (min(len(skills) * 2, 20) * 0.2)
@@ -234,6 +270,9 @@ class AdvancedResumeAnalyzer:
         strengths = []
         weaknesses = []
         recommendations = []
+        
+        if len(extra_skills) > 0:
+            strengths.append(f"Has {len(extra_skills)} additional valuable skills beyond requirements")
         
         if len(skills) >= 8:
             strengths.append(f"Strong technical profile with {len(skills)} identified skills")
@@ -266,11 +305,13 @@ class AdvancedResumeAnalyzer:
             recommendations.append("Add a clear Education section")
         
         return {
+            'person_name': person_name,
             'filename': filename or os.path.basename(file_path),
             'overall_score': round(overall_score, 2),
             'match_score': round(match_score, 2),
             'ats_score': round(ats_score, 2),
             'skills': skills,
+            'extra_skills': extra_skills,
             'years_experience': years_exp,
             'matched_keywords': matched_keywords,
             'missing_keywords': missing_keywords,
@@ -357,7 +398,8 @@ def display_comparison_dashboard():
                 st.markdown(f"### {medal}")
             
             with col2:
-                st.markdown(f"**{result['filename']}**")
+                st.markdown(f"**{result['person_name']}**")
+                st.caption(f"{result['filename']}")
                 st.caption(f"Overall Score: {result['overall_score']:.1f}%")
             
             with col3:
@@ -370,7 +412,7 @@ def display_comparison_dashboard():
             
             # Expandable details
             with st.expander("📋 View Details"):
-                tab1, tab2, tab3 = st.tabs(["Strengths", "Weaknesses", "Keywords"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Strengths", "Weaknesses", "Keywords", "Extra Skills"])
                 
                 with tab1:
                     for strength in result['strengths']:
@@ -393,6 +435,15 @@ def display_comparison_dashboard():
                         st.write("**Missing Keywords:**")
                         for kw in result['missing_keywords'][:10]:
                             st.error(f"✗ {kw}")
+                
+                with tab4:
+                    st.write("**🌟 Additional Skills (Not in Job Description):**")
+                    if result['extra_skills']:
+                        st.info(f"This candidate has {len(result['extra_skills'])} additional valuable skills:")
+                        for skill in result['extra_skills']:
+                            st.write(f"➕ {skill}")
+                    else:
+                        st.write("No additional skills beyond job requirements")
             
             st.markdown('</div>', unsafe_allow_html=True)
     
@@ -401,21 +452,25 @@ def display_comparison_dashboard():
     
     # Create DataFrame
     df = pd.DataFrame([{
+        'Name': r['person_name'],
         'Resume': r['filename'][:20],
         'Overall': r['overall_score'],
         'Match': r['match_score'],
         'ATS': r['ats_score'],
-        'Skills': len(r['skills'])
+        'Skills': len(r['skills']),
+        'Extra Skills': len(r['extra_skills'])
     } for r in sorted_results])
     
     col1, col2 = st.columns(2)
     
     with col1:
         # Bar chart - Overall scores
-        fig1 = px.bar(df, x='Resume', y='Overall', 
-                     title='Overall Scores Comparison',
+        fig1 = px.bar(df, x='Name', y='Overall', 
+                     title='Overall Scores by Candidate',
                      color='Overall',
-                     color_continuous_scale='Blues')
+                     color_continuous_scale='Blues',
+                     hover_data=['Resume'])
+        fig1.update_layout(xaxis_title="Candidate Name", yaxis_title="Score (%)")
         st.plotly_chart(fig1, use_container_width=True)
     
     with col2:
@@ -426,10 +481,10 @@ def display_comparison_dashboard():
             
             for idx, row in top3.iterrows():
                 fig2.add_trace(go.Scatterpolar(
-                    r=[row['Overall'], row['Match'], row['ATS'], row['Skills']*5],
-                    theta=['Overall', 'Match', 'ATS', 'Skills'],
+                    r=[row['Overall'], row['Match'], row['ATS'], row['Skills']*5, row['Extra Skills']*10],
+                    theta=['Overall', 'Match', 'ATS', 'Skills', 'Extra Skills'],
                     fill='toself',
-                    name=row['Resume']
+                    name=row['Name']
                 ))
             
             fig2.update_layout(
